@@ -56,18 +56,30 @@ const galleryImages = [
 ]
 
 const FloatingParticles = () => {
+  const [positions, setPositions] = useState<{ x: number; y: number }[]>([])
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const newPositions = [...Array(20)].map(() => ({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+      }))
+      setPositions(newPositions)
+    }
+  }, [])
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(20)].map((_, i) => (
+      {positions.map((pos, i) => (
         <motion.div
           key={i}
           className="absolute w-1 h-1 bg-yellow-400/30 rounded-full"
           initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: pos.x,
+            y: pos.y,
           }}
           animate={{
-            y: [null, -100, null],
+            y: [pos.y, -100],
             opacity: [0, 1, 0],
           }}
           transition={{
@@ -80,6 +92,7 @@ const FloatingParticles = () => {
     </div>
   )
 }
+
 
 export default function BilliardHallLanding() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
