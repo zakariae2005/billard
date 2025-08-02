@@ -1,5 +1,5 @@
 "use client"
-
+import Link from 'next/link';
 import { useState, useEffect } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -29,19 +29,19 @@ const testimonials = [
   {
     name: "Ahmed Benali",
     rating: 5,
-    text: "The most luxurious billiard experience in Morocco! The atmosphere is incredible and the tables are professional quality.",
+    text: "L'expérience de billard la plus luxueuse du Maroc ! L'atmosphère est incroyable et les tables sont de qualité professionnelle.",
     image: "/placeholder.svg?height=60&width=60",
   },
   {
     name: "Fatima El Mansouri",
     rating: 5,
-    text: "Perfect place for a night out with friends. Great music, excellent service, and the best billiard tables in the city.",
+    text: "Endroit parfait pour une soirée entre amis. Excellente musique, service de qualité, et les meilleures tables de billard de la ville.",
     image: "/placeholder.svg?height=60&width=60",
   },
   {
     name: "Omar Ziani",
     rating: 5,
-    text: "I've been coming here for months. The staff is amazing and the atmosphere is always vibrant. Highly recommended!",
+    text: "Je viens ici depuis des mois. L'équipe est formidable et l'atmosphère est toujours vibrante. Hautement recommandé !",
     image: "/placeholder.svg?height=60&width=60",
   },
 ]
@@ -94,7 +94,7 @@ const FloatingParticles = () => {
 }
 
 
-export default function BilliardHallLanding() {
+export default function PocketClubLanding() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [currentGalleryImage, setCurrentGalleryImage] = useState(0)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -136,6 +136,57 @@ export default function BilliardHallLanding() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,215,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,215,0,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
       </div>
 
+      {/* Navbar */}
+      <motion.nav
+        className="fixed top-0 left-0 right-0 z-50  backdrop-blur-md border-b border-yellow-400/20"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              <h3 className="text-2xl font-bold text-yellow-400 relative">
+                Pocket Club
+                <motion.div
+                  className="absolute -bottom-1 left-0 h-0.5 bg-yellow-400"
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ delay: 1, duration: 0.8 }}
+                />
+              </h3>
+            </motion.div>
+
+            {/* Tournament Button */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              <Button
+                className="relative bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-300 hover:to-yellow-500 text-black font-semibold px-6 py-2 rounded-full shadow-lg shadow-yellow-500/30 transform hover:scale-105 transition-all duration-300 border border-yellow-300/50 overflow-hidden group"
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+                <Link href='/bracket' className="relative">Voir Tournois</Link>
+                <motion.div
+                  className="absolute inset-0 bg-white/20"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.6 }}
+                />
+              </Button>
+            </motion.div>
+          </div>
+        </div>
+      </motion.nav>
+
       {/* Floating WhatsApp Button with enhanced animation */}
       <motion.div
         className="fixed bottom-6 right-6 z-50"
@@ -163,7 +214,7 @@ export default function BilliardHallLanding() {
       </motion.div>
 
       {/* Hero Section with enhanced effects */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
         <FloatingParticles />
         
         {/* Dynamic background overlay */}
@@ -173,7 +224,7 @@ export default function BilliardHallLanding() {
         >
           <img
             src="/images/word-image-93627-1.jpeg.webp"
-            alt="Luxury Billiard Hall"
+            alt="Pocket Club - Salle de Billard de Luxe"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-80" />
@@ -203,7 +254,7 @@ export default function BilliardHallLanding() {
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent relative">
-              Experience the Art of the Game
+              Vivez l&apos;Art du Jeu
               <motion.div
                 className="absolute -inset-1 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 blur-2xl"
                 animate={{ opacity: [0.5, 1, 0.5] }}
@@ -217,8 +268,7 @@ export default function BilliardHallLanding() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              Morocco&apos;s most luxurious billiard destination. Where precision meets passion in an atmosphere of pure
-              elegance.
+              La destination billard la plus luxueuse du Maroc. Où la précision rencontre la passion dans une atmosphère d&apos;élégance pure.
             </motion.p>
             
             <motion.div
@@ -236,7 +286,7 @@ export default function BilliardHallLanding() {
                 />
                 <span className="relative flex items-center">
                   <Phone className="h-5 w-5 mr-2" />
-                  Book a Table Now on WhatsApp
+                  Réservez une Table sur WhatsApp
                 </span>
                 <motion.div
                   className="absolute inset-0 bg-white/20"
@@ -292,7 +342,7 @@ export default function BilliardHallLanding() {
               <Trophy className="h-12 w-12 text-yellow-400" />
             </motion.div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-yellow-400 relative">
-              Where Legends Are Made
+              Où les Légendes Naissent
               <motion.div
                 className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent"
                 initial={{ width: 0 }}
@@ -302,17 +352,16 @@ export default function BilliardHallLanding() {
               />
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Step into Morocco&apos;s premier billiard destination. Our hall combines the timeless elegance of the game with
-              modern luxury, creating an atmosphere that&apos;s both sophisticated and welcoming.
+              Entrez dans la destination billard premium du Maroc. Notre salle combine l&apos;élégance intemporelle du jeu avec le luxe moderne, créant une atmosphère à la fois sophistiquée et accueillante.
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: Gamepad2, title: "Premium Tables", desc: "Professional tournament-quality billiard tables", color: "from-green-500/20 to-green-600/10" },
-              { icon: Music, title: "Curated Ambiance", desc: "Carefully selected music to enhance your game", color: "from-yellow-500/20 to-yellow-600/10" },
-              { icon: Coffee, title: "Premium Drinks", desc: "Extensive selection of beverages and refreshments", color: "from-green-400/20 to-green-500/10" },
-              { icon: Users, title: "Social Atmosphere", desc: "Perfect for friends, dates, and celebrations", color: "from-yellow-400/20 to-yellow-500/10" },
+              { icon: Gamepad2, title: "Tables Premium", desc: "Tables de billard de qualité professionnelle pour tournois", color: "from-green-500/20 to-green-600/10" },
+              { icon: Music, title: "Ambiance Soignée", desc: "Musique soigneusement sélectionnée pour améliorer votre jeu", color: "from-yellow-500/20 to-yellow-600/10" },
+              { icon: Coffee, title: "Boissons Premium", desc: "Large sélection de boissons et rafraîchissements", color: "from-green-400/20 to-green-500/10" },
+              { icon: Users, title: "Atmosphère Sociale", desc: "Parfait pour les amis, rendez-vous et célébrations", color: "from-yellow-400/20 to-yellow-500/10" },
             ].map((feature, index) => (
               <motion.div
                 key={index}
@@ -366,9 +415,9 @@ export default function BilliardHallLanding() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-yellow-400">Experience the Atmosphere</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-yellow-400">Découvrez l&apos;Atmosphère</h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Take a glimpse into our world of luxury and precision
+              Jetez un coup d&apos;œil dans notre monde de luxe et de précision
             </p>
           </motion.div>
 
@@ -389,7 +438,7 @@ export default function BilliardHallLanding() {
                 >
                   <img
                     src={galleryImages[currentGalleryImage] || "/placeholder.svg"}
-                    alt={`Gallery image ${currentGalleryImage + 1}`}
+                    alt={`Image galerie ${currentGalleryImage + 1}`}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
@@ -431,6 +480,7 @@ export default function BilliardHallLanding() {
           </div>
         </div>
       </section>
+
 {/* Tournament & Events Section */}
 <section className="py-20 px-4 bg-gradient-to-b from-black via-green-950/10 to-black relative overflow-hidden">
   {/* Background effects */}
@@ -458,7 +508,7 @@ export default function BilliardHallLanding() {
       </motion.div>
       
       <h2 className="text-4xl md:text-5xl font-bold mb-6 text-yellow-400 relative">
-        Tournaments & Events
+        Tournois & Événements
         <motion.div
           className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent"
           initial={{ width: 0 }}
@@ -468,7 +518,7 @@ export default function BilliardHallLanding() {
         />
       </h2>
       <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-        Join the competition and showcase your skills in our prestigious tournaments and special events
+        Rejoignez la compétition et montrez vos talents dans nos tournois prestigieux et événements spéciaux
       </p>
     </motion.div>
 
@@ -476,25 +526,25 @@ export default function BilliardHallLanding() {
     <div className="grid lg:grid-cols-2 gap-8 mb-16">
       {[
         {
-          title: "Weekly Championship",
-          date: "Every Friday",
-          time: "8:00 PM - 12:00 AM",
-          prize: "5,000 DH",
-          participants: "32 Players",
-          status: "Open Registration",
-          description: "Our flagship weekly tournament featuring the best players in Morocco",
-          features: ["Professional referee", "Live streaming", "Trophy ceremony", "Cash prizes"],
+          title: "Championnat Hebdomadaire",
+          date: "Chaque Vendredi",
+          time: "20h00 - 00h00",
+          prize: "5 000 DH",
+          participants: "32 Joueurs",
+          status: "Inscriptions Ouvertes",
+          description: "Notre tournoi phare hebdomadaire mettant en vedette les meilleurs joueurs du Maroc",
+          features: ["Arbitre professionnel", "Diffusion en direct", "Cérémonie de remise des prix", "Prix en espèces"],
           image: "/images/c1.jpg"
         },
         {
-          title: "Ramadan Special Tournament",
-          date: "March 15-16, 2024",
-          time: "10:00 PM - 3:00 AM",
-          prize: "15,000 DH",
-          participants: "64 Players",
-          status: "Registration Closing Soon",
-          description: "Annual Ramadan tournament with the biggest prize pool of the year",
-          features: ["2-day event", "International players", "Media coverage", "VIP experience"],
+          title: "Tournoi Spécial Ramadan",
+          date: "15-16 Mars 2024",
+          time: "22h00 - 03h00",
+          prize: "15 000 DH",
+          participants: "64 Joueurs",
+          status: "Inscriptions Bientôt Fermées",
+          description: "Tournoi annuel du Ramadan avec la plus grosse cagnotte de l'année",
+          features: ["Événement de 2 jours", "Joueurs internationaux", "Couverture médiatique", "Expérience VIP"],
           image: "/images/c8.jpg"
         }
       ].map((event, index) => (
@@ -530,7 +580,7 @@ export default function BilliardHallLanding() {
                 className="absolute top-4 right-4"
               >
                 <Badge className={`${
-                  event.status === "Open Registration" 
+                  event.status === "Inscriptions Ouvertes" 
                     ? "bg-gradient-to-r from-green-500 to-green-600" 
                     : "bg-gradient-to-r from-yellow-500 to-orange-500"
                 } text-white font-bold shadow-lg`}>
@@ -544,7 +594,7 @@ export default function BilliardHallLanding() {
                   className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-4 py-2 rounded-full font-bold text-lg shadow-lg"
                   whileHover={{ scale: 1.05 }}
                 >
-                  Prize: {event.prize}
+                  Prix : {event.prize}
                 </motion.div>
               </div>
             </div>
@@ -587,13 +637,13 @@ export default function BilliardHallLanding() {
                   whileHover={{ x: 3 }}
                 >
                   <Trophy className="h-4 w-4 text-yellow-400 mr-2" />
-                  <span className="text-sm">Tournament</span>
+                  <span className="text-sm">Tournoi</span>
                 </motion.div>
               </div>
               
               {/* Features List */}
               <div className="mb-6">
-                <h4 className="text-sm font-semibold text-yellow-400 mb-3">Event Features:</h4>
+                <h4 className="text-sm font-semibold text-yellow-400 mb-3">Caractéristiques de l&apos;événement :</h4>
                 <div className="grid grid-cols-2 gap-2">
                   {event.features.map((feature, featureIndex) => (
                     <motion.div
@@ -627,7 +677,7 @@ export default function BilliardHallLanding() {
                     />
                     <span className="relative flex items-center justify-center">
                       <Trophy className="h-4 w-4 mr-2" />
-                      Register Now
+                      S&apos;inscrire Maintenant
                     </span>
                   </Button>
                 </motion.div>
@@ -672,9 +722,9 @@ export default function BilliardHallLanding() {
         >
           <Gamepad2 className="h-10 w-10 text-yellow-400" />
         </motion.div>
-        <h3 className="text-2xl font-bold text-yellow-400 mb-4">Tournament Information</h3>
+        <h3 className="text-2xl font-bold text-yellow-400 mb-4">Informations sur les Tournois</h3>
         <p className="text-gray-300 max-w-2xl mx-auto">
-          Join our community of billiard enthusiasts and compete in professionally organized tournaments
+          Rejoignez notre communauté de passionnés de billard et participez à des tournois organisés professionnellement
         </p>
       </div>
       
@@ -682,16 +732,16 @@ export default function BilliardHallLanding() {
         <div>
           <h4 className="text-lg font-bold text-white mb-4 flex items-center">
             <Trophy className="h-5 w-5 text-yellow-400 mr-2" />
-            Tournament Rules
+            Règles du Tournoi
           </h4>
           <ul className="space-y-2 text-gray-300 text-sm">
             {[
-              "Professional WPA rules apply",
-              "Registration required 48 hours in advance",
-              "Valid ID required for participation",
-              "Dress code: Smart casual required",
-              "No outside food or drinks allowed",
-              "Referee decisions are final"
+              "Les règles WPA professionnelles s'appliquent",
+              "Inscription requise 48 heures à l'avance",
+              "Pièce d'identité valide requise pour participer",
+              "Code vestimentaire : Tenue décontractée élégante",
+              "Nourriture et boissons extérieures interdites",
+              "Les décisions de l'arbitre sont définitives"
             ].map((rule, index) => (
               <motion.li
                 key={index}
@@ -711,15 +761,15 @@ export default function BilliardHallLanding() {
         <div>
           <h4 className="text-lg font-bold text-white mb-4 flex items-center">
             <Phone className="h-5 w-5 text-yellow-400 mr-2" />
-            How to Register
+            Comment S&apos;inscrire
           </h4>
           <div className="space-y-3 text-gray-300 text-sm">
             {[
-              "Contact us via WhatsApp or phone",
-              "Provide full name and contact details", 
-              "Pay registration fee (if applicable)",
-              "Receive confirmation and tournament details",
-              "Arrive 30 minutes before start time"
+              "Contactez-nous via WhatsApp ou téléphone",
+              "Fournissez nom complet et coordonnées", 
+              "Payez les frais d'inscription (si applicable)",
+              "Recevez confirmation et détails du tournoi",
+              "Arrivez 30 minutes avant l'heure de début"
             ].map((step, index) => (
               <motion.div
                 key={index}
@@ -760,7 +810,7 @@ export default function BilliardHallLanding() {
             />
             <span className="relative flex items-center">
               <Phone className="h-5 w-5 mr-2" />
-              Register for Next Tournament
+              S&apos;inscrire au Prochain Tournoi
             </span>
           </Button>
         </motion.div>
@@ -768,6 +818,7 @@ export default function BilliardHallLanding() {
     </motion.div>
   </div>
 </section>
+
       {/* Enhanced Pricing Section */}
       <section className="py-20 px-4 relative">
         <div className="max-w-6xl mx-auto">
@@ -778,34 +829,34 @@ export default function BilliardHallLanding() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-yellow-400">Pricing & Special Offers</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-yellow-400">Tarifs & Offres Spéciales</h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Competitive rates with exclusive deals for every occasion
+              Tarifs compétitifs avec des offres exclusives pour toutes les occasions
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Regular Hours",
+                title: "Heures Normales",
                 price: "150 DH",
-                period: "per hour",
-                features: ["Premium table access", "Complimentary setup", "Background music"],
+                period: "par heure",
+                features: ["Accès table premium", "Installation gratuite", "Musique d'ambiance"],
                 popular: false,
               },
               {
                 title: "Happy Hour",
                 price: "100 DH",
-                period: "per hour",
-                features: ["4PM - 7PM daily", "Free soft drink", "Premium table access", "Group discounts"],
+                period: "par heure",
+                features: ["16h - 19h tous les jours", "Boisson gazeuse gratuite", "Accès table premium", "Réductions groupes"],
                 popular: true,
-                badge: "Most Popular",
+                badge: "Plus Populaire",
               },
               {
-                title: "Students Night",
+                title: "Soirée Étudiants",
                 price: "80 DH",
-                period: "per hour",
-                features: ["Wednesdays only", "Valid student ID required", "Free snacks", "Extended hours"],
+                period: "par heure",
+                features: ["Mercredis uniquement", "Carte étudiant valide requise", "Collations gratuites", "Heures prolongées"],
                 popular: false,
               },
             ].map((plan, index) => (
@@ -877,7 +928,7 @@ export default function BilliardHallLanding() {
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
                       />
-                      <span className="relative">Book Now</span>
+                      <span className="relative">Réserver Maintenant</span>
                     </Button>
                   </CardContent>
                 </Card>
@@ -897,8 +948,8 @@ export default function BilliardHallLanding() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-yellow-400">What Our Players Say</h2>
-            <p className="text-xl text-gray-300">Don&apos;t just take our word for it</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-yellow-400">Ce que Disent nos Joueurs</h2>
+            <p className="text-xl text-gray-300">Ne nous croyez pas sur parole</p>
           </motion.div>
 
           <div className="relative">
@@ -952,7 +1003,7 @@ export default function BilliardHallLanding() {
                   </div>
                   <div>
                     <h4 className="font-bold text-white">{testimonials[currentTestimonial].name}</h4>
-                    <p className="text-gray-400">Verified Customer</p>
+                    <p className="text-gray-400">Client Vérifié</p>
                   </div>
                 </motion.div>
               </motion.div>
@@ -985,8 +1036,8 @@ export default function BilliardHallLanding() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-yellow-400">Visit Us Today</h2>
-            <p className="text-xl text-gray-300">We&apos;re open late and ready to welcome you</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-yellow-400">Visitez-nous Aujourd&apos;hui</h2>
+            <p className="text-xl text-gray-300">Nous sommes ouverts tard et prêts à vous accueillir</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-12">
@@ -1011,14 +1062,14 @@ export default function BilliardHallLanding() {
                     className="absolute inset-0 bg-yellow-400/30 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
                 </div>
-                <h3 className="text-2xl font-bold text-white">Opening Hours</h3>
+                <h3 className="text-2xl font-bold text-white">Heures d&apos;Ouverture</h3>
               </motion.div>
               
               <div className="space-y-3 text-lg relative z-10">
                 {[
-                  { days: "Monday - Thursday", hours: "2:00 PM - 2:00 AM" },
-                  { days: "Friday - Saturday", hours: "2:00 PM - 3:00 AM" },
-                  { days: "Sunday", hours: "4:00 PM - 1:00 AM" }
+                  { days: "Lundi - Jeudi", hours: "14h00 - 02h00" },
+                  { days: "Vendredi - Samedi", hours: "14h00 - 03h00" },
+                  { days: "Dimanche", hours: "16h00 - 01h00" }
                 ].map((schedule, index) => (
                   <motion.div
                     key={index}
@@ -1057,7 +1108,7 @@ export default function BilliardHallLanding() {
                     className="absolute inset-0 bg-yellow-400/30 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
                 </div>
-                <h3 className="text-2xl font-bold text-white">Location</h3>
+                <h3 className="text-2xl font-bold text-white">Localisation</h3>
               </motion.div>
               
               <div className="space-y-4 relative z-10">
@@ -1069,7 +1120,7 @@ export default function BilliardHallLanding() {
                   viewport={{ once: true }}
                 >
                   123 Avenue Mohammed V<br />
-                  Casablanca, Morocco
+                  Casablanca, Maroc
                   <br />
                   20000
                 </motion.p>
@@ -1086,7 +1137,7 @@ export default function BilliardHallLanding() {
                       className="absolute inset-0 bg-yellow-400 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
                     />
                     <MapPin className="h-4 w-4 mr-2 relative z-10" />
-                    <span className="relative z-10">View on Google Maps</span>
+                    <span className="relative z-10">Voir sur Google Maps</span>
                   </Button>
                 </motion.div>
               </div>
@@ -1117,7 +1168,7 @@ export default function BilliardHallLanding() {
             </motion.div>
             
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-yellow-400 relative">
-              Ready to Play?
+              Prêt à Jouer ?
               <motion.div
                 className="absolute inset-0 bg-yellow-400/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               />
@@ -1130,8 +1181,7 @@ export default function BilliardHallLanding() {
               transition={{ delay: 0.5 }}
               viewport={{ once: true }}
             >
-              Book your table now and experience the finest billiard hall in Morocco. Whether it&apos;s a casual game with
-              friends or a serious tournament, we&apos;re ready for you.
+              Réservez votre table maintenant et découvrez la meilleure salle de billard du Maroc. Que ce soit pour une partie décontractée entre amis ou un tournoi sérieux, nous sommes prêts pour vous.
             </motion.p>
             
             <motion.div 
@@ -1154,7 +1204,7 @@ export default function BilliardHallLanding() {
                     className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
                   <Phone className="h-5 w-5 mr-2 relative z-10" />
-                  <span className="relative z-10">Book on WhatsApp</span>
+                  <span className="relative z-10">Réserver sur WhatsApp</span>
                   <motion.div
                     className="absolute inset-0 bg-white/20"
                     initial={{ x: "-100%" }}
@@ -1178,7 +1228,7 @@ export default function BilliardHallLanding() {
                     className="absolute inset-0 bg-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
                   <Calendar className="h-5 w-5 mr-2 relative z-10" />
-                  <span className="relative z-10">Call to Reserve</span>
+                  <span className="relative z-10">Appeler pour Réserver</span>
                 </Button>
               </motion.div>
             </motion.div>
@@ -1197,7 +1247,7 @@ export default function BilliardHallLanding() {
               viewport={{ once: true }}
             >
               <h3 className="text-2xl font-bold text-yellow-400 mb-4 relative">
-                Elite Billiards Morocco
+                Pocket Club
                 <motion.div
                   className="absolute -bottom-1 left-0 h-0.5 bg-yellow-400"
                   initial={{ width: 0 }}
@@ -1207,8 +1257,7 @@ export default function BilliardHallLanding() {
                 />
               </h3>
               <p className="text-gray-400 leading-relaxed">
-                Morocco&apos;s premier destination for billiards enthusiasts. Experience luxury, precision, and unforgettable
-                moments.
+                La destination premium du Maroc pour les passionnés de billard. Vivez le luxe, la précision et des moments inoubliables.
               </p>
             </motion.div>
             
@@ -1218,9 +1267,9 @@ export default function BilliardHallLanding() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-lg font-bold text-white mb-4">Quick Links</h4>
+              <h4 className="text-lg font-bold text-white mb-4">Liens Rapides</h4>
               <ul className="space-y-2 text-gray-400">
-                {["About Us", "Gallery", "Pricing", "Contact"].map((link, index) => (
+                {["À Propos", "Galerie", "Tarifs", "Contact"].map((link, index) => (
                   <motion.li
                     key={link}
                     initial={{ opacity: 0, x: -20 }}
@@ -1229,7 +1278,7 @@ export default function BilliardHallLanding() {
                     viewport={{ once: true }}
                   >
                     <a 
-                      href={`#${link.toLowerCase().replace(' ', '')}`} 
+                      href={`#${link.toLowerCase().replace(' ', '').replace('à', 'a')}`} 
                       className="hover:text-yellow-400 transition-colors duration-300 relative group inline-block"
                     >
                       {link}
@@ -1251,7 +1300,7 @@ export default function BilliardHallLanding() {
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-lg font-bold text-white mb-4">Follow Us</h4>
+              <h4 className="text-lg font-bold text-white mb-4">Suivez-nous</h4>
               <div className="flex space-x-4">
                 {[
                   { icon: Instagram, color: "hover:text-pink-400" },
@@ -1286,7 +1335,7 @@ export default function BilliardHallLanding() {
             transition={{ delay: 0.6 }}
             viewport={{ once: true }}
           >
-            <p>&copy; 2024 Elite Billiards Morocco. All rights reserved.</p>
+            <p>&copy; 2024 Pocket Club. Tous droits réservés.</p>
           </motion.div>
         </div>
       </footer>
